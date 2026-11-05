@@ -23,8 +23,8 @@ Escribe `/router` seguido de un nivel, o pulsa el botón en la banda:
 En una terminal de Claude Code:
 
 ```bash
-/plugin install model-router --marketplace bylingav/gearshift
-/plugin install usage-bar --marketplace bylingav/gearshift
+/plugin install model-router --marketplace bylingav/gearshift-claude-code
+/plugin install usage-bar --marketplace bylingav/gearshift-claude-code
 ```
 
 <img src="sections/estado.png" alt="Estado" width="100%">
