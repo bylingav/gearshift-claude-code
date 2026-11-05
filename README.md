@@ -1,22 +1,29 @@
 <p align="center"><img src="banner.png" alt="gearshift: cambia de modelo según la tarea" width="100%"></p>
 
-**gearshift** son dos mods para Claude Code que te ahorran tokens sin perder calidad donde importa.
+<p align="center"><i>Cambia de marcha según la tarea. Menos tokens, misma calidad donde importa.</i></p>
+
+<br>
 
 <img src="sections/que-hace.png" alt="Qué hace cada uno" width="100%">
 
-- **model-router**: mira lo que pides y elige entre Haiku, Sonnet u Opus. Para los subagentes lo decide de verdad. En el hilo principal lo sugiere y, si Claude Code lo permite, lo cambia.
-- **usage-bar**: muestra arriba, sobre la caja de texto, el modelo activo, el nivel del router y cuánto llevas gastado en la ventana de 5 horas y en la semanal.
+**model-router** elige solo el modelo que hace falta. **Haiku** para lo sencillo, **Sonnet** para el día a día y **Opus** para lo difícil.
+
+**usage-bar** te enseña, justo encima de la caja de texto, qué modelo está activo y cuánto llevas gastado de tu límite.
+
+<br>
 
 <img src="sections/niveles.png" alt="Niveles del router" width="100%">
 
-Escribe `/router` seguido de un nivel, o pulsa el botón en la banda:
+Escribe `/router` seguido de un nivel, o pulsa el botón de la banda:
 
 | Nivel | Qué hace |
-|---|---|
-| `off` | No elige nada. |
-| `lite` | Solo elige modelo para los subagentes. |
-| `full` | Subagentes y hilo principal, con reglas locales. Es el de por defecto. |
-| `ultra` | Como `full`, pero un modelo pequeño clasifica cada prompt. Más preciso y más lento. |
+|:---:|---|
+| **`off`** | No elige nada. |
+| **`lite`** | Solo elige modelo para los *subagentes*. |
+| **`full`** | Subagentes e hilo principal, con reglas locales. **Por defecto.** |
+| **`ultra`** | Como `full`, pero un modelo pequeño clasifica cada prompt. *Más preciso y más lento.* |
+
+<br>
 
 <img src="sections/instalar.png" alt="Instalar" width="100%">
 
@@ -27,10 +34,15 @@ En una terminal de Claude Code:
 /plugin install usage-bar --marketplace bylingav/gearshift-claude-code
 ```
 
-<img src="sections/estado.png" alt="Estado" width="100%">
+<br>
 
-Beta. Hecho para uso personal. El cambio automático del modelo principal depende de que Claude Code acepte la orden.
+## Estado
 
-<img src="sections/licencia.png" alt="Licencia" width="100%">
+> [!WARNING]
+> **Beta, para uso personal.** El cambio automático del modelo principal depende de que Claude Code acepte la orden.
 
-MIT. Ver [LICENSE](LICENSE).
+<br>
+
+## Licencia
+
+**MIT**. Ver [LICENSE](LICENSE).
