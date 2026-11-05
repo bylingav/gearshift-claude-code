@@ -6,7 +6,7 @@
 
 <img src="sections/que-hace.png" alt="Qué hace cada uno" width="100%">
 
-**model-router** elige solo el modelo que hace falta. **Haiku** para lo sencillo, **Sonnet** para el día a día y **Opus** para lo difícil.
+**model-router** elige solo el modelo que hace falta y se lo pide a Claude Code. **Haiku** para lo sencillo, **Sonnet** para el día a día y **Opus** para lo difícil.
 
 **usage-bar** te enseña, justo encima de la caja de texto, qué modelo está activo y cuánto llevas gastado de tu límite.
 
@@ -22,6 +22,11 @@ Escribe `/router` seguido de un nivel, o pulsa el botón de la banda:
 | **`lite`** | Solo elige modelo para los *subagentes*. |
 | **`full`** | Subagentes e hilo principal, con reglas locales. **Por defecto.** |
 | **`ultra`** | Como `full`, pero un modelo pequeño clasifica cada prompt. *Más preciso y más lento.* |
+
+Otros comandos:
+
+- **`/router auto`**: evita que Claude Code te pregunte cada vez que cambia de modelo.
+- **`/router debug`**: enseña qué ha contestado Claude Code a la última petición de cambio.
 
 <br>
 
@@ -39,7 +44,7 @@ En una terminal de Claude Code:
 ## Estado
 
 > [!WARNING]
-> **Beta, para uso personal.** El cambio automático del modelo principal depende de que Claude Code acepte la orden.
+> **Beta, para uso personal.** En la terminal el cambio de modelo se ve en la etiqueta de abajo. En la app de escritorio Claude Code acepta el cambio (lo confirma `/router debug`), pero la etiqueta puede seguir mostrando el modelo anterior.
 
 <br>
 

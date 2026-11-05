@@ -1,6 +1,6 @@
 {
   "name": "model-router",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Elige el modelo justo para cada tarea: Haiku para lo sencillo, Sonnet para el día a día y Opus para lo difícil.",
   "author": { "name": "bylingav" },
   "license": "MIT",

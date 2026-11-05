@@ -37,20 +37,37 @@ export function pick(text: string): Tier {
 }
 
 export const register: Register = on => {
+  let lastSet = 'aún sin intentos'
+
   on('session.start', async ($, e, next) => {
     $.ui.status(undefined) // limpia la línea de estado de versiones anteriores
+    try {
+      await $.config.set({ key: 'switchModelsOnFlag', value: 'Switch automatically' })
+    } catch {
+      // shortcut: si la fila no existe o no admite el valor, queda como esté.
+    }
     const saved = await $.store.get('level')
     if (LEVELS.includes(saved as Level)) await update($, levelAtom, () => saved as string)
     await $.command.register({
       name: 'router',
       description: 'Nivel del model router: off, lite, full, ultra',
-      argumentHint: LEVELS.join('|'),
+      argumentHint: `${LEVELS.join('|')}|auto|debug`,
     })
     return next(e)
   })
 
   on('command.run', { command: 'router' }, async ($, e) => {
     const level = await lvl($)
+    if (e.args.trim().toLowerCase() === 'debug') {
+      const rows = (await $.config.list())
+        .filter(r => /model/i.test(`${r.key} ${r.label}`))
+        .map(r => `${r.key} (${r.kind}) = ${String(r.value)}${r.options ? ` [${r.options.join(', ')}]` : ''}${r.isLocked ? ' (bloqueada)' : ''}`)
+      return { text: `modelo actual: ${await $.session.model()}\núltimo config.set: ${lastSet}\nfilas de modelo:\n${rows.join('\n') || '(ninguna)'}` }
+    }
+    if (e.args.trim().toLowerCase() === 'auto') {
+      const r = await $.config.set({ key: 'switchModelsOnFlag', value: 'Switch automatically' })
+      return { text: r.deny === undefined ? 'switchModelsOnFlag: Switch automatically' : `denegado: ${r.deny}` }
+    }
     const arg = e.args.trim().toLowerCase() as Level
     if (!LEVELS.includes(arg)) {
       return { text: `router: ${level} (${DESC[level]}). Uso: /router ${LEVELS.join('|')}` }
@@ -85,9 +102,11 @@ export const register: Register = on => {
       const current = await $.session.model()
       if (!current.toLowerCase().includes(tier)) {
         try {
-          await $.config.set({ key: 'model', value: tier })
-        } catch {
-          // shortcut: sin fila `model` o sin alias, solo queda la sugerencia en la banda.
+          await $.config.set({ key: 'switchModelsOnFlag', value: 'Switch automatically' })
+          const r = await $.config.set({ key: 'model', value: tier })
+          lastSet = r.deny === undefined ? `ok (${tier})` : `denegado: ${r.deny}`
+        } catch (err) {
+          lastSet = `error: ${String(err)}`
         }
       }
       await update($, tierAtom, () => tier)

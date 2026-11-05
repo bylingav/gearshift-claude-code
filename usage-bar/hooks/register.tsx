@@ -32,8 +32,10 @@ export const register: Register = on => {
 
   on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
     const all = await read($, limits)
-    const model = (await read($, tier)) || (await $.session.model()).toLowerCase()
-    const name = ['haiku', 'sonnet', 'opus'].find(m => model.includes(m))
+    const actual = (await $.session.model()).toLowerCase()
+    const name = ['haiku', 'sonnet', 'opus'].find(m => actual.includes(m))
+    const wanted = await read($, tier)
+    const suggest = wanted && wanted !== name ? wanted : undefined
     if (e.props.hasSurvey || (all.length === 0 && !name)) return next(e)
 
     const ui = $.ui.resolve(e)
@@ -43,6 +45,7 @@ export const register: Register = on => {
     return (
       <Box gap={3}>
         {name ? <Text color={MODEL_COLOR[name]} bold>{MODEL_GLYPH[name]} {name}</Text> : null}
+        {suggest ? <Text color={MODEL_COLOR[suggest]}>→ {suggest}</Text> : null}
         <Box gap={1}>
           {LEVELS.map(l => (
             <Button key={l} label={l === level ? `● ${l}` : l} onPress={() => $.command.run({ command: 'router', args: l })} />
