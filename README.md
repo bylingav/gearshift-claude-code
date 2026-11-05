@@ -44,7 +44,7 @@ En una terminal de Claude Code:
 ## Estado
 
 > [!WARNING]
-> **Beta, para uso personal.** En la terminal el cambio de modelo se ve en la etiqueta de abajo. En la app de escritorio Claude Code acepta el cambio (lo confirma `/router debug`), pero la etiqueta puede seguir mostrando el modelo anterior.
+> **Beta, para uso personal.** El router cambia el modelo tanto en la terminal como en la app de escritorio. En la app, la etiqueta de abajo puede seguir mostrando el modelo anterior: `/router debug` muestra el modelo real.
 
 <br>
 
