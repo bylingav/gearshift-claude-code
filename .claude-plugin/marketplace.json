@@ -1,0 +1,16 @@
+{
+  "name": "gearshift",
+  "owner": { "name": "bylingav" },
+  "plugins": [
+    {
+      "name": "model-router",
+      "source": "./model-router",
+      "description": "Elige el modelo justo para cada tarea: Haiku para lo sencillo, Sonnet para el día a día y Opus para lo difícil."
+    },
+    {
+      "name": "usage-bar",
+      "source": "./usage-bar",
+      "description": "Muestra arriba el modelo activo y cuánto llevas gastado de tu límite."
+    }
+  ]
+}
